@@ -319,7 +319,7 @@ class Kit{
     }
 
     public function testPermission(Player $player) : bool{
-        if(isset($this->data['worlds']) && !in_array(strtolower($player->getLevel()->getName()), $this->data['worlds'], true)){
+        if(isset($this->data['worlds']) && !in_array(strtolower($player->getLevel()->getFolderName()), $this->data['worlds'], true)){
             return false;
         }
 
