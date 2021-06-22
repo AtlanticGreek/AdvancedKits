@@ -319,15 +319,15 @@ class Kit{
     }
 
     public function testPermission(Player $player) : bool{
-        if($this->ak->permissionsMode){
-            return $player->hasPermission('advancedkits.'.strtolower($this->name)) || $player->hasPermission('advancedkits.'.$this->name);
+        if(isset($this->data['worlds']) && !in_array(strtolower($player->getLevel()->getName()), $this->data['worlds'], true)){
+            return false;
         }
 
-        return
-            (isset($this->data['users']) ? in_array($player->getLowerCaseName(), $this->data['users'], true) : true)
-            &&
-            (isset($this->data['worlds']) ? in_array(strtolower($player->getLevel()->getName()), $this->data['worlds'], true) : true)
-        ;
+        if($this->ak->permissionsMode){
+            return $player->hasPermission('advancedkits.' . strtolower($this->name)) || $player->hasPermission('advancedkits.' . $this->name);
+        } else{
+            return !isset($this->data['users']) || in_array($player->getLowerCaseName(), $this->data['users'], true);
+        }
     }
 
     public function save() : void{
