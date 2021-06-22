@@ -1,0 +1,58 @@
+{
+  "name": "atlanticgreek/advancedkits",
+  "license": "LGPL-3.0",
+  "require": {
+    "pocketmine/pocketmine-mp": "^3.0",
+    "jojoe77777/formapi": "master@dev",
+    "onebone/economyapi": "master@dev",
+    "dapigguy/piggycustomenchants": "master@dev"
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "jojoe77777/formapi",
+        "version": "master",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/jojoe77777/FormAPI",
+          "reference": "master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "onebone/economyapi",
+        "version": "master",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/AtlanticGreek/EconomyAPI",
+          "reference": "master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "dapigguy/piggycustomenchants",
+        "version": "master",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/DaPigGuy/PiggyCustomEnchants",
+          "reference": "master"
+        }
+      }
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "": [
+        "src",
+        "vendor/jojoe77777/formapi/src",
+        "vendor/onebone/economyapi/src",
+        "vendor/dapigguy/piggycustomenchants/src"
+      ]
+    }
+  }
+}
