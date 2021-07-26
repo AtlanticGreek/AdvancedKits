@@ -1,58 +1,70 @@
 {
   "name": "atlanticgreek/advancedkits",
-  "license": "LGPL-3.0",
+  "type": "project",
+  "description": "Fork of luca28pet's plugin with edits to suit better AtlanticGreek's needs",
+  "homepage": "https://github.com/AtlanticGreek/AdvancedKits",
+  "license": "LGPL-3.0-only",
   "require": {
+    "jojoe77777/formapi": "^1.3.0"
+  },
+  "require-dev": {
     "pocketmine/pocketmine-mp": "^3.0",
-    "jojoe77777/formapi": "master@dev",
-    "onebone/economyapi": "master@dev",
-    "dapigguy/piggycustomenchants": "master@dev"
+    "atlanticgreek/economyapi": "^3.0.0",
+    "dapigguy/piggycustomenchants": "^2.4.2"
+  },
+  "autoload": {
+    "psr-0": {
+      "AdvancedKits\\": "src/"
+    }
   },
   "repositories": [
     {
       "type": "package",
       "package": {
         "name": "jojoe77777/formapi",
-        "version": "master",
+        "version": "1.3.0",
+        "dist": {
+          "url": "https://poggit.pmmp.io/r/101415/FormAPI.phar",
+          "type": "phar",
+          "shasum": "157a10420fa1731b0ed99b1924a4fd4d3077b5c4"
+        },
         "source": {
           "type": "git",
           "url": "https://github.com/jojoe77777/FormAPI",
-          "reference": "master"
+          "reference": "b34e519dd0fa6777a46583b1addf851ceaa2c723"
+        },
+        "autoload": {
+          "psr-0": {
+            "jojoe77777\\FormAPI\\": "src/"
+          }
         }
       }
     },
     {
-      "type": "package",
-      "package": {
-        "name": "onebone/economyapi",
-        "version": "master",
-        "source": {
-          "type": "git",
-          "url": "https://github.com/AtlanticGreek/EconomyAPI",
-          "reference": "master"
-        }
-      }
+      "type": "vcs",
+      "url": "https://github.com/AtlanticGreek/EconomyAPI"
     },
     {
       "type": "package",
       "package": {
         "name": "dapigguy/piggycustomenchants",
-        "version": "master",
+        "version": "2.4.2",
+        "dist": {
+          "url": "https://github.com/DaPigGuy/PiggyCustomEnchants/releases/download/2.4.2/PiggyCustomEnchants-2.4.2.phar",
+          "type": "phar",
+          "shasum": "65568a121d70a4bf6ad4d09bd5a67825898e35cb"
+        },
         "source": {
           "type": "git",
           "url": "https://github.com/DaPigGuy/PiggyCustomEnchants",
-          "reference": "master"
+          "reference": "ee9a02c2832ae253fccee93ca0749a45de2d956a"
+        },
+        "autoload": {
+          "psr-0": {
+            "DaPigGuy\\PiggyCustomEnchants\\": "src/"
+          }
         }
       }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "": [
-        "src",
-        "vendor/jojoe77777/formapi/src",
-        "vendor/onebone/economyapi/src",
-        "vendor/dapigguy/piggycustomenchants/src"
-      ]
-    }
-  }
+  ]
 }
