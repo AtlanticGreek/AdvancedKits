@@ -52,9 +52,10 @@ Then, to open the UI, use /kit
 If you run this plugin in folder format, you will have to use DEVirion and manually install FormAPI, or disable 'show-form-no-args' in the config.yml
 
 **Permissions:**
-If 'permissions-mode' in the config.yml is true: with the permission advancedkits.kitname, a player will be able to get the kit named "kitname".
-Note: in the permission, the kit name HAS to be ALL in lowercase letters.
-If 'permissions-mode' in the config.yml is false, you can specify in the kits.yml which users (and in which worlds) can get a kit. (see kit settings)
+If 'permissions-mode' in the config.yml is true: with the permission advancedkits.kitName, a player will be able to get the kit named "kitName".
+Note: in the permission, the kit name is case-sensitive.
+If 'permissions-mode' in the config.yml is false, you can specify in the kits.yml which users can get a kit. (see kit settings)
+Note: specified worlds will apply regardless of permissions-mode's value
 
 **Kit Settings:**
 
@@ -128,7 +129,7 @@ testkit:
 You can find a list of available enchantments in the file Enchantment.php in the pmmp source code: https://github.com/pmmp/PocketMine-MP/blob/master/src/pocketmine/item/enchantment/Enchantment.php
 
 If you don't specify users or world, then the kit will be available to all users or in all worlds.
-If 'permissions-mode' in the config.yml is true, these parameters will be ignored
+If 'permissions-mode' in the config.yml is true, the users parameters will be ignored but the worlds parameter will still apply
 
 
 **Translations:**
