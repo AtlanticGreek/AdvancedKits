@@ -10,7 +10,10 @@ use pocketmine\entity\EffectInstance;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
+use pocketmine\permission\Permission;
+use pocketmine\permission\PermissionManager;
 use pocketmine\Player;
+use pocketmine\utils\AssumptionFailedError;
 use function array_chunk;
 use function array_shift;
 use function count;
@@ -51,6 +54,9 @@ class Kit{
     private $imgData;
     /** @var string */
     private $formName;
+
+    /** @var Permission */
+    private $permission;
 
     public function __construct(Main $ak, array $data, string $name){
         $this->ak = $ak;
@@ -109,6 +115,17 @@ class Kit{
         if(isset($data['form-name'])){
             $this->formName = $data['form-name'];
         }
+
+        if($this->ak->permissionsMode){
+            $rootPerm = PermissionManager::getInstance()->getPermission(strtolower($this->ak->getName()));
+            if(!$rootPerm instanceof Permission){
+                throw new AssumptionFailedError('Root permission is not registered');
+            }
+            $permission = new Permission($rootPerm->getName() . '.' . $this->name, 'Allows to obtain the ' . $this->name . ' kit', Permission::DEFAULT_OP);
+            $permission->addParent($rootPerm, true);
+            PermissionManager::getInstance()->addPermission($permission);
+            $this->permission = $permission;
+        }
     }
 
     public function getName() : string{
@@ -129,6 +146,10 @@ class Kit{
 
     public function getFormName() : ?string{
         return $this->formName;
+    }
+
+    public function getPermission() : ?Permission{
+        return $this->permission;
     }
 
     public function handleRequest(Player $player) : bool{
@@ -324,7 +345,7 @@ class Kit{
         }
 
         if($this->ak->permissionsMode){
-            return $player->hasPermission('advancedkits.' . strtolower($this->name)) || $player->hasPermission('advancedkits.' . $this->name);
+            return $player->hasPermission($this->permission);
         } else{
             return !isset($this->data['users']) || in_array($player->getLowerCaseName(), $this->data['users'], true);
         }
